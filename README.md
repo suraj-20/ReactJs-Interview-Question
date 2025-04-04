@@ -234,3 +234,17 @@ function Counter() {
 export default Counter;
 
 ```
+
+## Q.6 useState vs useRef ?
+
+useState is used to manage state in a functional component, while useRef is used to store a reference to a DOM element or a component instance.
+
+## Q.7 useCallback vs useMemo?
+
+useCallback is used to memoize callback functions. This is helpfull when you have a component that renders often and you want to prevent it from re-creating the function on every render.
+
+useMemo is used to momoize a value. This is helpful when you have a component that perform an extensize calculation on render and you want to prevent it from re-calculating the value on every redner.
+
+## Q.8 useState vs useReducer?
+
+useState is a simple hook that is suitable for managing small amount of state, while useReducer is more powerful hook that is recommended for managing complex state and enforcing strict state transition logic.
