@@ -235,7 +235,7 @@ export default Counter;
 
 ```
 
-## Q.6 useState vs useRef ?
+## Q.6 useState vs useRef?
 
 useState is used to manage state in a functional component, while useRef is used to store a reference to a DOM element or a component instance.
 
@@ -248,3 +248,20 @@ useMemo is used to momoize a value. This is helpful when you have a component th
 ## Q.8 useState vs useReducer?
 
 useState is a simple hook that is suitable for managing small amount of state, while useReducer is more powerful hook that is recommended for managing complex state and enforcing strict state transition logic.
+
+## Q.9 What is React.memo and how it's different from useMemo?
+
+React.memo is a higher-order component that allows you to memoize a functional component. The component will re-render only if its prop have changed. This can help you to avoid unnacessary renderings, improving the performance of your component.
+
+```bash
+import React from 'react';
+
+const MyComponent = React.memo(({ data }) => {
+  return <div>{data.join(', ')}</div>;
+});
+
+export default MyComponent;
+```
+
+useMemo is a hook that allows you to memoize a single value in your component, while React.memo is a higer-order component that allows you to memoize a whole functional component.
+
