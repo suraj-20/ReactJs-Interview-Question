@@ -22,3 +22,22 @@ const ExampleFunctionalComponent = (props) => {
 
 export default ExampleFunctionalComponent;
 ```
+
+## Q.3 What is React.Fragment?
+
+React.Fragment is a special component in React that allows us to group a list of children without adding extra nodes to the DOM.
+
+```bash
+import React from 'react';
+
+const ExampleFunctionalComponent = (props) => {
+  return (
+    <React.Fragment>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example of a functional React component written in JSX.</p>
+    </React.Fragment>
+  );
+};
+
+export default ExampleFunctionalComponent;
+```
