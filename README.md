@@ -55,3 +55,182 @@ Summary:
 Props are used to pass data from parent component to a child component and are read-only.
 
 State is used to manage component's internal state and can be modified by the component.
+
+## Q.5 What are the Reack Hooks?
+
+Hooks are a feature in React that allows you to add state and other React features to functional components. Hooks make it possible to add these features to functional components as well, making them a more versatile and flexible way to build components in React.
+
+There is the list of React Hooks - 
+
+React provides several built-in hooks that can use in your functional components:
+
+- useState: allows you to add state to your functional components
+
+```bash
+
+import React, { useState } from 'react';
+
+function ExampleComponent() {
+  // Declare a state variable called "count" and initialize it to 0
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
+}
+
+export default ExampleComponent;
+
+```
+
+- useRef: Allows you to access and modify the value of a DOM node or a React component instance. The useRef hook is a way to access the value of a DOM element or a component instance in React. It is often used to store a reference of a DOM element so that you can access its properties and methods such as its position, size, or to manipulate its style, or to store a reference to a component instance to access its methods, such as to trigger a re-render.
+
+```bash
+
+import React, {useRef, useEffect} from 'react';
+
+function TextInput() {
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
+    return <input type='text' ref={inputRef} />;
+}
+
+export default TextInput;
+
+```
+
+- useEffect: Allows you to perform side effects in your functional components, such as API calls or updating the document title.
+
+```bash
+
+import React, {useState, useEffect} from 'react';
+
+function ExampleComponent() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        document.title = `You clicked ${count} times`;
+    });
+
+    return (
+        <div>
+            <p>You clicked {count} times</p>
+            <button onClick{() => setCount(count + 1)}>Click me</button>
+        </div>
+    );
+}
+
+export default ExampleComponent;
+
+```
+
+Note that the effect function will run every time the component renders, which includes both initial render and any subsequent updates. If you only want the effect to run on certain updates, you can provide an array of dependencies as the second argument to useEffect. The effect function will only run if one of the dependencies has changed.
+
+```bash
+import React, {useState, useEffect} from 'react';
+
+function ExampleComponent() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        document.title = `You clicked ${count} times`;
+    },[count]); // Only re-run the effect if count changes
+
+    return (
+        <div>
+            <p>You clicked {count} times</p>
+            <button onClick{() => setCount(count + 1)}>Click me</button>
+        </div>
+    );
+}
+
+export default ExampleComponent;
+
+// This helps to optimize the performance of your component by avoiding unnecessary updates.
+```
+
+- useContext: used to access data from a Context in a React application.
+
+- useReducer: Allows you to manage state with a reducer function in your functional components. It provides a way to handle complex state updates in a predictable and organized manner and is often used as an alternative to useState.
+
+```bash
+import React, {useReducer} from 'react';
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment':
+            return { count: state.count + 1};
+        case 'decrement': 
+            return { count: state.count - 1};
+        default:
+        throw new Error();
+    }
+}
+
+function counter() {
+    const [state, dispatch] = useReducer(reducer, {count: 0});
+
+    return (
+        <>
+            <p>Count: {state.count}</p>
+            <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+            <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+        </>
+    );
+}
+
+export defult Counter;
+```
+
+- useCallback: allows you to memorize your callback functions for performance optimization. The callback hook is a way to optimize performance in React by memoizing a function. When a function is memoized, it means that its result is cahced and reused between render cycles, instead of being recalculated every time the component re-renders. Thsi can be usefull for functions that are passed as props to child components, to avoid unnecessary re-render of those components.
+
+```bash
+import React, {useState, useCallback} from 'react';
+
+function Counter() {
+    const [count, setcount] = useState(0);
+
+    const increment = usecallback(() => {
+        setCount((c) => c+ 1);
+    }, [setCount]);
+
+    return (
+        <>
+            <p>Count: {count}</p>
+            <button onClick={increment}>Increment</button>
+        </>
+    );
+}
+
+export default Counter;
+```
+
+- useMemo: Allows you to memoize values computed in your functional components for performance optimization. The useMemo hook is a way to optimize performance in React by memoizing a value. When a value is memoized, it mean sthat its result is cached and reused between render cycles, instead of being recalculated every time the component re-renders. This can be usefull for optimizing expensize calcualtions, such as filtering or mapping over large data sets, or complex calculations that are used in the render methods.
+
+```bash
+import React, { useState, useMemo } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const doubleCount = useMemo(() => count * 2, [count]);
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <p>Double Count: {doubleCount}</p>
+      <button onClick={() => setCount((c) => c + 1)}>Increment</button>
+    </>
+  );
+}
+
+export default Counter;
+
+```
