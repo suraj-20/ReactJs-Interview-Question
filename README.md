@@ -41,3 +41,17 @@ const ExampleFunctionalComponent = (props) => {
 
 export default ExampleFunctionalComponent;
 ```
+
+## Q.4 What is state and props?
+
+In React, both state and props are used to manage or render component. However, they are used for different purposes and have different characteristics.
+
+Props (short for poperties) are a way of pasing data from parent component to child component. Props are read-only, which means that the child component cannot modify the props it recieve from the parent component. Props are used to pass data and/or function that a child component is needs to perform its job.
+
+State is a way of managing component's internal state or data. The state is managed within the component and can be modified by the component itself. The state is used to keep track of changing information within component, such as the value of the text input and the status of the toggle switch.
+
+Summary:
+
+Props are used to pass data from parent component to a child component and are read-only.
+
+State is used to manage component's internal state and can be modified by the component.
